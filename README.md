@@ -155,35 +155,63 @@ Particular attention is given to the **At-Risk Recall** metric because identifyi
 
 ## 7. Experimental Results
 
-The following results represent the early-stage experiment, in which G1 and G2 are excluded from the input features.
+EduPredict evaluates two experimental configurations to investigate student performance prediction under different feature availability conditions.
 
-### Held-Out Test Set Results
+### Experiment 1: Full-Feature Prediction
+
+This experiment includes intermediate academic grades (`G1` and `G2`) along with other student-related features.
+
+**Objective:** Predict the final student performance category using the available demographic, social, family, and academic information, including intermediate grades.
+
+#### Held-Out Test Set Results
+
+| Model | Accuracy | At-Risk Recall | Macro F1 |
+|---|---:|---:|---:|
+| Logistic Regression | 86.87% | 90.91% | 85.90% |
+| Decision Tree | 85.86% | 96.97% | 85.19% |
+| Random Forest | 86.87% | 93.94% | 86.05% |
+
+**Observations:**
+- Logistic Regression and Random Forest achieved equal accuracy.
+- Decision Tree achieved the highest At-Risk Recall.
+- Random Forest achieved the highest Macro F1-score.
+
+### Experiment 2: Early-Stage Prediction
+
+This experiment excludes `G1` and `G2` from the input features.
+
+**Objective:** Investigate whether academic risk can be identified without relying on intermediate academic grades.
+
+#### Held-Out Test Set Results
 
 | Model | Accuracy | Balanced Accuracy | At-Risk Precision | At-Risk Recall | At-Risk F1 | Macro F1 |
 |---|---:|---:|---:|---:|---:|---:|
 | Logistic Regression | 59.60% | 55.30% | 40.00% | 42.42% | 41.18% | 55.20% |
 | Decision Tree | 61.62% | 59.85% | 43.90% | 54.55% | 48.65% | 59.00% |
-| Random Forest | **70.71%** | **65.15%** | **57.14%** | 48.48% | **52.46%** | **65.65%** |
+| Random Forest | 70.71% | 65.15% | 57.14% | 48.48% | 52.46% | 65.65% |
 
-### Stratified 5-Fold Cross-Validation
-
-Cross-validation is performed on the training partition.
+### Stratified 5-Fold Cross-Validation — Early-Stage Experiment
 
 | Model | Mean Accuracy | Accuracy SD | Mean Macro F1 | Macro F1 SD |
 |---|---:|---:|---:|---:|
-| Logistic Regression | 67.58% | 5.06% | **63.84%** | 6.43% |
+| Logistic Regression | 67.58% | 5.06% | 63.84% | 6.43% |
 | Decision Tree | 62.15% | 4.81% | 59.31% | 5.28% |
-| Random Forest | **69.94%** | **2.10%** | 63.78% | **3.34%** |
+| Random Forest | 69.94% | 2.10% | 63.78% | 3.34% |
 
-### Interpretation
+### Comparative Interpretation
 
-- Random Forest achieved the highest held-out test accuracy of 70.71%.
-- Random Forest also achieved the highest held-out test Macro F1-score of 65.65%.
-- Logistic Regression obtained a slightly higher mean cross-validation Macro F1-score than Random Forest.
-- Decision Tree achieved the highest At-Risk recall among the three models in the held-out test evaluation.
-- At-Risk identification remains challenging, indicating scope for further improvement.
+The full-feature experiment achieved substantially higher test accuracy than the early-stage experiment. This indicates that intermediate academic grades provide valuable predictive information.
 
-These results demonstrate that model selection should consider more than accuracy, particularly when identifying students who may need additional academic support.
+However, the two experiments serve different purposes:
+
+- **Full-feature prediction:** Uses G1 and G2 to improve prediction of final academic performance.
+- **Early-stage prediction:** Excludes G1 and G2 to investigate academic risk identification using information available before intermediate grades.
+
+The full-feature results should not be interpreted as evidence of beginning-of-semester prediction.
+
+The early-stage experiment is more relevant to identifying students who may require academic support before intermediate grades become available.
+
+**Research consideration:** Predictive performance does not establish causation. External validation on additional educational datasets is required before generalizing the findings.
 
 ## 8. Explainable Artificial Intelligence (XAI)
 
