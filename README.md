@@ -1,4 +1,16 @@
-# EduPredict – Student Performance Prediction and Explainable Analytics
+# EduPredict — Student Performance Prediction and Explainable Analytics
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.12-blue?logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Streamlit-Application-FF4B4B?logo=streamlit" alt="Streamlit">
+  <img src="https://img.shields.io/badge/Scikit--learn-Machine%20Learning-orange?logo=scikitlearn" alt="Scikit-learn">
+  <img src="https://img.shields.io/badge/SHAP-Explainable%20AI-purple" alt="SHAP">
+  <img src="https://img.shields.io/badge/Status-Deployed-success" alt="Deployed">
+</p>
+
+<p align="center">
+  <strong>An Explainable Machine Learning System for Early Identification of Students at Academic Risk.</strong>
+</p>
 
 <p align="center">
   <a href="https://edupredict-sudhanshsu.streamlit.app/">
@@ -6,157 +18,356 @@
   </a>
 </p>
 
-<p align="center">
-  An Explainable Machine Learning Application for Early Student Performance Prediction
-</p>
+---
 
-## Live Demo
+## 1. Project Overview
 
-**Application:** https://edupredict-sudhanshsu.streamlit.app/
+**EduPredict** is a machine learning-based student performance prediction and explainable analytics application designed to identify students who may be at academic risk.
 
-**GitHub:** https://github.com/sudhanshukumarjha108/EduPredict
+The system uses student demographic, family, social, and academic-related information to predict whether a student is likely to pass or fall into the at-risk category.
 
-## About the Project
+Unlike a conventional prediction system, EduPredict also incorporates Explainable Artificial Intelligence (XAI) techniques to help users understand which features influence model predictions.
 
-EduPredict is a machine learning-based student performance prediction and explainable analytics application. It aims to identify students who may be at academic risk using background, family, and behavioral information available during the early stage of an academic semester.
+The application compares multiple machine learning algorithms, evaluates their performance, and provides both global and individual prediction explanations.
 
-The project compares multiple classification algorithms and uses explainable AI techniques to help interpret model predictions and influential factors.
+### Key Objectives
 
-## Key Features
+- Identify students who may be at academic risk.
+- Compare different machine learning classification algorithms.
+- Evaluate models using multiple classification metrics.
+- Apply cross-validation to assess model stability.
+- Explain model predictions using SHAP.
+- Identify influential student-related factors.
+- Provide an interactive interface for student performance prediction.
 
-- Student performance prediction: Pass / At-Risk classification.
-- Early-stage prediction without using first and second-period grades (G1 and G2).
-- Comparison of Logistic Regression, Decision Tree, and Random Forest.
-- Model evaluation using a stratified train-test split.
-- Five-fold cross-validation on training data.
-- Confusion matrix and classification metrics.
-- SHAP-based global and individual prediction explanations.
-- Interactive Streamlit dashboard.
-- Prediction for newly entered student information.
+## 2. Live Application
 
-## Machine Learning Methodology
+**Try EduPredict:**  
+https://edupredict-sudhanshsu.streamlit.app/
 
-**Dataset:** UCI Student Performance – Mathematics (`student-mat.csv`).
+**GitHub Repository:**  
+https://github.com/sudhanshukumarjha108/EduPredict
 
-**Target definition:**
-- Pass: Final grade (G3) >= 10
-- At-Risk: Final grade (G3) < 10
+## 3. Application Screenshots
 
-**Early-stage feature selection:** G1 and G2 are excluded to avoid using intermediate grades that may not be available during early-semester prediction.
+### Dashboard
 
-**Models evaluated:**
-1. Logistic Regression
-2. Decision Tree
-3. Random Forest
+The dashboard provides an overview of the dataset, student performance distribution, and key analytical insights.
 
-**Evaluation approach:**
-- Stratified train-test split (75:25 default configuration).
-- Five-fold stratified cross-validation on the training partition.
-- Accuracy, balanced accuracy, precision, recall, and F1-score.
+![EduPredict Dashboard](screenshots/dashboard.png)
 
-## Test Set Results
+### Model Lab
 
-| Model | Accuracy | Macro F1 |
-|---|---:|---:|
-| Logistic Regression | 59.60% | 55.20% |
-| Decision Tree | 61.62% | 59.00% |
-| Random Forest | **70.71%** | **65.65%** |
+The Model Lab compares machine learning models and presents evaluation metrics and visualizations.
 
-Random Forest achieved the highest test accuracy and macro F1-score among the three evaluated models in this experiment.
+![EduPredict Model Lab](screenshots/model-lab.png)
 
-## Explainable AI
+### Student Prediction
 
-EduPredict incorporates SHAP (SHapley Additive exPlanations) to interpret model predictions.
+Users can enter student-related information to obtain a predicted performance category.
 
-- Global explanations: Understand which features influence predictions across students.
-- Individual explanations: Examine factors contributing to an individual student's prediction.
+![EduPredict Student Prediction](screenshots/prediction.png)
 
-## Technology Stack
+### Explainable AI
 
-- **Programming:** Python
-- **Machine Learning:** Scikit-learn
-- **Explainability:** SHAP
-- **Data Processing:** Pandas, NumPy
-- **Visualization:** Matplotlib, Seaborn
-- **Application:** Streamlit
+The Explainable AI section provides SHAP-based explanations to understand the influence of features on model predictions.
 
-## Project Structure
+![EduPredict Explainable AI](screenshots/explainable-ai.png)
+
+## 4. System Architecture
+
+EduPredict follows a machine learning workflow consisting of dataset loading, preprocessing, model training, evaluation, prediction, and explainability.
+
+![EduPredict System Architecture](architecture.png)
+
+An editable Mermaid version of the architecture is available in [architecture.md](architecture.md).
+
+### System Workflow
+
+1. **Dataset Loading:** Load the UCI Student Performance Mathematics dataset.
+2. **Data Preprocessing:** Prepare the input features and target variable.
+3. **Train-Test Split:** Divide the dataset using stratified sampling.
+4. **Model Training:** Train Logistic Regression, Decision Tree, and Random Forest.
+5. **Model Evaluation:** Evaluate models using classification metrics.
+6. **Cross-Validation:** Perform stratified 5-fold cross-validation on the training partition.
+7. **Prediction:** Generate predictions for new student records.
+8. **Explainability:** Use SHAP and permutation feature importance to interpret model behaviour.
+
+## 5. Dataset Information
+
+EduPredict uses the **Student Performance Dataset — Mathematics (`student-mat.csv`)** from the UCI Machine Learning Repository.
+
+**Dataset source:**  
+https://archive.ics.uci.edu/dataset/320/student+performance
+
+### Dataset Features
+
+The dataset contains student-related information covering several categories:
+
+| Category | Examples |
+|---|---|
+| Demographic | Age, sex, address |
+| Family | Family size, parental status |
+| Parental education | Mother's and father's education |
+| Family background | Parents' jobs, guardian |
+| Academic behaviour | Study time, previous failures, absences |
+| School support | Extra educational support, paid classes |
+| Social behaviour | Going out, alcohol consumption, free time |
+| Health | Health status and lifestyle-related features |
+| Academic grades | G1, G2, G3 |
+
+### Target Variable
+
+The final mathematics grade, `G3`, is transformed into a binary classification target:
+
+- **Pass:** G3 >= 10
+- **At-Risk:** G3 < 10
+
+### Early-Stage Prediction Strategy
+
+For the early-stage experiment, G1 and G2 are excluded from the model inputs because they represent intermediate academic grades that may not be available at the beginning of a semester.
+
+This helps evaluate whether student-related information can support early identification of academic risk.
+
+## 6. Machine Learning Models
+
+EduPredict compares three classification algorithms.
+
+| Model | Description |
+|---|---|
+| Logistic Regression | Linear classification baseline |
+| Decision Tree | Tree-based classification model |
+| Random Forest | Ensemble learning algorithm using multiple decision trees |
+
+### Model Evaluation Metrics
+
+The models are evaluated using:
+
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Macro F1-score
+- Balanced Accuracy
+- Confusion Matrix
+
+Particular attention is given to the **At-Risk Recall** metric because identifying students who may fail is an important objective of the system.
+
+## 7. Experimental Results
+
+The following results represent the early-stage experiment, in which G1 and G2 are excluded from the input features.
+
+### Held-Out Test Set Results
+
+| Model | Accuracy | Balanced Accuracy | At-Risk Precision | At-Risk Recall | At-Risk F1 | Macro F1 |
+|---|---:|---:|---:|---:|---:|---:|
+| Logistic Regression | 59.60% | 55.30% | 40.00% | 42.42% | 41.18% | 55.20% |
+| Decision Tree | 61.62% | 59.85% | 43.90% | 54.55% | 48.65% | 59.00% |
+| Random Forest | **70.71%** | **65.15%** | **57.14%** | 48.48% | **52.46%** | **65.65%** |
+
+### Stratified 5-Fold Cross-Validation
+
+Cross-validation is performed on the training partition.
+
+| Model | Mean Accuracy | Accuracy SD | Mean Macro F1 | Macro F1 SD |
+|---|---:|---:|---:|---:|
+| Logistic Regression | 67.58% | 5.06% | **63.84%** | 6.43% |
+| Decision Tree | 62.15% | 4.81% | 59.31% | 5.28% |
+| Random Forest | **69.94%** | **2.10%** | 63.78% | **3.34%** |
+
+### Interpretation
+
+- Random Forest achieved the highest held-out test accuracy of 70.71%.
+- Random Forest also achieved the highest held-out test Macro F1-score of 65.65%.
+- Logistic Regression obtained a slightly higher mean cross-validation Macro F1-score than Random Forest.
+- Decision Tree achieved the highest At-Risk recall among the three models in the held-out test evaluation.
+- At-Risk identification remains challenging, indicating scope for further improvement.
+
+These results demonstrate that model selection should consider more than accuracy, particularly when identifying students who may need additional academic support.
+
+## 8. Explainable Artificial Intelligence (XAI)
+
+EduPredict incorporates explainability techniques to make machine learning predictions more understandable.
+
+### SHAP — SHapley Additive exPlanations
+
+SHAP is used to interpret the contribution of input features to model predictions.
+
+The application provides:
+
+- Global feature importance.
+- Individual prediction explanations.
+- Feature contribution visualizations.
+- Positive and negative feature contributions.
+
+### Permutation Feature Importance
+
+Permutation importance estimates the influence of a feature by measuring the change in model performance when that feature's values are shuffled.
+
+Together, these methods help users understand which student-related features influence model behaviour.
+
+**Important:** Feature importance indicates model associations, not proof of causation.
+
+## 9. Technology Stack
+
+| Component | Technology |
+|---|---|
+| Programming Language | Python |
+| Web Application | Streamlit |
+| Data Processing | Pandas, NumPy |
+| Machine Learning | Scikit-learn |
+| Explainable AI | SHAP |
+| Data Visualization | Matplotlib, Seaborn |
+| Dataset | UCI Student Performance Dataset |
+| Version Control | Git and GitHub |
+| Deployment | Streamlit Community Cloud |
+
+## 10. Project Structure
 
 ```text
-EduPredict_Project/
+EduPredict/
 │
-├── app.py
-├── requirements.txt
-├── README.md
-├── .gitignore
+├── .streamlit/
+│   └── config.toml
 │
 ├── data/
 │   └── student-mat.csv
 │
-└── .streamlit/
-    └── config.toml
+├── screenshots/
+│   ├── dashboard.png
+│   ├── model-lab.png
+│   ├── prediction.png
+│   └── explainable-ai.png
+│
+├── architecture.md
+├── app.py
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
-## Installation and Execution
+## 11. Installation and Setup
 
-### 1. Clone the repository
+Follow these steps to run EduPredict locally.
+
+### Prerequisites
+
+- Python 3.12 recommended
+- Git
+- pip
+
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/sudhanshukumarjha108/EduPredict.git
+```
+
+### Step 2: Navigate to the Project
+
+```bash
 cd EduPredict
 ```
 
-### 2. Create a virtual environment
+### Step 3: Create a Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate on Windows:
+### Step 4: Activate the Environment
+
+**Windows PowerShell:**
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-### 3. Install dependencies
+### Step 5: Install Dependencies
 
 ```bash
-python -m pip install -r requirements.txt
+python -m pip install --upgrade pip
+pip install -r requirements.txt
 ```
 
-### 4. Run the application
+### Step 6: Run the Application
 
 ```bash
 python -m streamlit run app.py
 ```
 
-Open the local URL displayed in your terminal.
+The application will be available at:
 
-## Research Context
+```text
+http://localhost:8501
+```
 
-This project is associated with the research topic:
+## 12. Research Methodology
 
-**Explainable Machine Learning for Student Performance Prediction: A Comparative Analysis of Predictive Models and Influential Factors.**
+The research follows a comparative experimental approach.
 
-The study investigates predictive performance and the interpretability of machine learning models for early identification of students who may be academically at risk.
+1. Dataset selection and exploration.
+2. Data preprocessing and target transformation.
+3. Feature selection for early-stage prediction.
+4. Stratified train-test partitioning.
+5. Training of three classification algorithms.
+6. Held-out test set evaluation.
+7. Stratified 5-fold cross-validation on training data.
+8. Model comparison using classification metrics.
+9. SHAP-based global and individual explanations.
+10. Interpretation of influential features and model limitations.
 
-## Limitations
+The held-out test set is used for final model evaluation. Cross-validation is performed on the training partition.
 
-- The experiments use the UCI Student Performance Mathematics dataset.
-- Results on this dataset may not generalize to other institutions or student populations.
-- Early-stage prediction excludes G1 and G2, but the target is still the final grade G3.
-- Model predictions should support educational intervention, not replace academic judgment.
+## 13. Limitations and Future Scope
 
-## Authors
+### Current Limitations
 
+- The dataset represents student records from Portuguese secondary schools.
+- The dataset size limits the generalizability of findings.
+- Student performance is influenced by multiple factors that may not be captured in the dataset.
+- At-Risk recall requires further improvement.
+- Predictions should not be treated as definitive assessments of individual students.
+
+### Future Enhancements
+
+- Evaluate the framework on larger and more diverse educational datasets.
+- Improve early identification of at-risk students.
+- Explore additional machine learning and ensemble algorithms.
+- Investigate calibration and threshold optimization.
+- Add personalized academic intervention recommendations.
+- Conduct external validation across different educational institutions.
+
+## 14. Research and Academic Context
+
+**Project:** EduPredict  
+**Research Area:** Explainable Artificial Intelligence and Educational Data Mining  
+**Primary Objective:** Early identification of students at academic risk using machine learning.
+
+**Institution:**  
+Galgotias University  
+School of Computer Applications and Technology
+
+**Project Team:**
 - Sudhanshu Kumar Jha
 - Riya Kumari
 - Shivani Rana
 
-**Galgotias University**  
-School of Computer Applications and Technology
+## 15. Acknowledgements
 
-## Acknowledgements
+- UCI Machine Learning Repository for providing the Student Performance Dataset.
+- The developers and maintainers of Python, Streamlit, Scikit-learn, SHAP, Pandas, and NumPy.
+- Galgotias University, School of Computer Applications and Technology.
 
-Dataset: UCI Machine Learning Repository – Student Performance.
+## 16. License
 
+This repository is intended for academic and educational purposes. Please refer to the dataset's original UCI source for its terms of use and attribution requirements.
+
+---
+
+<p align="center">
+  <strong>EduPredict — Making Student Performance Prediction More Explainable.</strong>
+</p>
+
+<p align="center">
+  Built with Python, Machine Learning, and Explainable AI.
+</p>
